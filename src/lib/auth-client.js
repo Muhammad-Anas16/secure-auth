@@ -96,3 +96,30 @@ export const signInUser = async (email, password) => {
 		};
 	}
 };
+
+export const signOutUser = async () => {
+	try {
+		const { data, error } = await authClient.signOut();
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'Sign-out failed',
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'Sign-out successful',
+			error: null
+		};
+	} catch (err) {
+		console.error('Sign-out failed:', err);
+		return {
+			success: false,
+			message: 'An unexpected error occurred',
+			error: err
+		};
+	}
+};
