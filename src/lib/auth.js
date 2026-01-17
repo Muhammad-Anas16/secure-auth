@@ -10,6 +10,15 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
 	},
+	// user: {
+	// 	additionalFields: {
+	// 		bio: {
+	// 			type: "string",
+	// 			required: false,
+	// 			defaultValue: "New user",
+	// 		},
+	// 	},
+	// },
 	// socialProviders: {
 	// 	google: {
 	// 		clientId: process.env.GOOGLE_CLIENT_ID,
