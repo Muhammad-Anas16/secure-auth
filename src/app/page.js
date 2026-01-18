@@ -13,10 +13,7 @@ import Footer from "@/components/Home/Footer";
 export default function Home() {
   return (
    <>
-   {/* <div className="relative flex min-h-screen flex-col"> */}
-   <div>
     <Navbar />
-    {/* <main className="flex-1 mt-[-39]"> */}
     <main>
       <HeroSection />
       <LogosSection />
@@ -26,7 +23,6 @@ export default function Home() {
       <FinalCTA />
       <Footer />
       </main>
-      </div>
     </>
   );
 }
