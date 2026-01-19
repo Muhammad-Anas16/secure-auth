@@ -123,3 +123,88 @@ export const signOutUser = async () => {
 		};
 	}
 };
+
+export const GoogleLogin = async () => {
+	try {
+		const { data, error } = await authClient.signIn.social({
+			provider: "google",
+			callbackURL: "/"
+		}, {
+			onRequest: (ctx) => {
+				console.log('Google sign-in request started...');
+			},
+			onSuccess: (ctx) => {
+				console.log('Google sign-in successful!', ctx.data);
+			},
+			onError: (ctx) => {
+				console.error('Google sign-in failed:', ctx.error.message);
+			},
+		});
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'Google sign-in failed',
+				data: null,
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'Google sign-in successful',
+			data: data,
+			error: null
+		};
+	} catch (err) {
+		// console.error('Google sign-in failed:', err);
+		return {
+			success: false,
+			message: err.message || 'An unexpected error occurred',
+			data: null,
+			error: err
+		};
+	}
+};
+
+export const GitHubLogin = async () => {
+	try {
+		const { data, error } = await authClient.signIn.social({
+			provider: "github",
+			callbackURL: "/"
+		}, {
+			onRequest: (ctx) => {
+				console.log('GitHub sign-in request started...');
+			},
+			onSuccess: (ctx) => {
+				console.log('GitHub sign-in successful!', ctx.data);
+			},
+			onError: (ctx) => {
+				console.error('GitHub sign-in failed:', ctx.error.message);
+			},
+		});
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'GitHub sign-in failed',
+				data: null,
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'GitHub sign-in successful',
+			data: data,
+			error: null
+		};
+	} catch (err) {
+		return {
+			success: false,
+			message: err.message || 'An unexpected error occurred',
+			data: null,
+			error: err
+		};
+	}
+};

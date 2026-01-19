@@ -17,9 +17,10 @@ export default function ResetPassword() {
   const [showConfirm, setShowConfirm] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden font-display
-      bg-[radial-gradient(ellipse_at_top,_#0b3c5d_0%,_#081b2d_40%,_#040b14_100%)]">
-
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden font-display
+      bg-[radial-gradient(ellipse_at_top,_#0b3c5d_0%,_#081b2d_40%,_#040b14_100%)]"
+    >
       {/* Top Left Glow */}
       <div className="absolute -top-32 -left-32 w-[420px] h-[420px] bg-cyan-500/20 rounded-full blur-[140px]" />
 
@@ -46,9 +47,10 @@ export default function ResetPassword() {
         </div>
 
         {/* Glass Card */}
-        <div className="w-full rounded-xl p-6 flex flex-col gap-6
-          bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.6)]">
-
+        <div
+          className="w-full rounded-xl p-6 flex flex-col gap-6
+          bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_25px_80px_rgba(0,0,0,0.6)]"
+        >
           {/* New Password */}
           <div className="space-y-2">
             <label className="text-slate-300 text-xs font-bold uppercase tracking-widest px-1">
@@ -56,7 +58,10 @@ export default function ResetPassword() {
             </label>
 
             <div className="relative">
-              <MdVpnKey className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
+              <MdVpnKey
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                size={20}
+              />
 
               <input
                 type={showPassword ? "text" : "password"}
@@ -72,7 +77,11 @@ export default function ResetPassword() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
               >
-                {showPassword ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
+                {showPassword ? (
+                  <MdVisibilityOff size={20} />
+                ) : (
+                  <MdVisibility size={20} />
+                )}
               </button>
             </div>
           </div>
@@ -96,7 +105,7 @@ export default function ResetPassword() {
 
             <p className="text-[11px] text-slate-500 italic flex items-center gap-1">
               <MdInfo size={12} className="text-cyan-400" />
-             {" Pro-tip: Add a special character like '@' for max security."}
+              {" Pro-tip: Add a special character like '@' for max security."}
             </p>
           </div>
 
@@ -107,7 +116,10 @@ export default function ResetPassword() {
             </label>
 
             <div className="relative">
-              <MdVerifiedUser className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
+              <MdVerifiedUser
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"
+                size={20}
+              />
 
               <input
                 type={showConfirm ? "text" : "password"}
@@ -123,15 +135,21 @@ export default function ResetPassword() {
                 onClick={() => setShowConfirm(!showConfirm)}
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
               >
-                {showConfirm ? <MdVisibilityOff size={20} /> : <MdVisibility size={20} />}
+                {showConfirm ? (
+                  <MdVisibilityOff size={20} />
+                ) : (
+                  <MdVisibility size={20} />
+                )}
               </button>
             </div>
           </div>
 
           {/* CTA */}
-          <button className="w-full h-14 rounded-lg font-bold text-white
+          <button
+            className="w-full h-14 rounded-lg font-bold text-white
             bg-cyan-500 hover:bg-cyan-400 transition
-            flex items-center justify-center gap-2 active:scale-[0.98]">
+            flex items-center justify-center gap-2 active:scale-[0.98]"
+          >
             Update Password
             <MdArrowForward />
           </button>

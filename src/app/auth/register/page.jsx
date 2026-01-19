@@ -3,9 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import {
-  FaUser,
-  FaEnvelope,
-  FaLock,
   FaGoogle,
   FaGithub,
   FaFacebook,
@@ -17,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/validation/authSchema";
 import SocialButton from "@/components/main/SocialButton";
-import { signUpUser } from "@/lib/auth-client";
+import { GitHubLogin, GoogleLogin, signUpUser } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -54,6 +51,32 @@ const Register = () => {
     reset();
   };
 
+  const handleGoogleLogin = async () => {
+    setSocialLoading("google");
+    const result = await GoogleLogin();
+    if (result.success) {
+      toast.success("Logged in successfully!");
+      router.push("/");
+      setSocialLoading(null);
+    } else {
+      toast.error(result.message || "Login failed.");
+      setSocialLoading(null);
+    }
+  };
+
+  const handleGitHubLogin = async () => {
+    setSocialLoading("github");
+    const result = await GitHubLogin();
+    if (result.success) {
+      toast.success("Logged in successfully!");
+      router.push("/");
+      setSocialLoading(null);
+    } else {
+      toast.error(result.message || "Login failed.");
+      setSocialLoading(null);
+    }
+  };
+
   const handleSocialLogin = (provider) => {
     setSocialLoading(provider);
 
@@ -71,18 +94,18 @@ const Register = () => {
         </h1>
 
         {/* Social */}
-        <div className="flex flex-wrap gap-3 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 w-full">
           <SocialButton
             icon={<FaGoogle />}
             label="Google"
             loading={socialLoading === "google"}
-            onClick={() => handleSocialLogin("google")}
+            onClick={() => handleGoogleLogin()}
           />
           <SocialButton
             icon={<FaGithub />}
             label="GitHub"
             loading={socialLoading === "github"}
-            onClick={() => handleSocialLogin("github")}
+            onClick={() => handleGitHubLogin()}
           />
           <SocialButton
             icon={<FaFacebook />}
