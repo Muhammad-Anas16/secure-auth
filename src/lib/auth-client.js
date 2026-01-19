@@ -1,5 +1,6 @@
 import { createAuthClient } from 'better-auth/react';
 
+
 export const authClient = createAuthClient({
 	baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
@@ -196,6 +197,48 @@ export const GitHubLogin = async () => {
 		return {
 			success: true,
 			message: 'GitHub sign-in successful',
+			data: data,
+			error: null
+		};
+	} catch (err) {
+		return {
+			success: false,
+			message: err.message || 'An unexpected error occurred',
+			data: null,
+			error: err
+		};
+	}
+};
+
+export const FacebookLogin = async () => {
+	try {
+		const { data, error } = await authClient.signIn.social({
+			provider: "facebook",
+			callbackURL: "/"
+		}, {
+			onRequest: (ctx) => {
+				console.log('Facebook sign-in request started...');
+			},
+			onSuccess: (ctx) => {
+				console.log('Facebook sign-in successful!', ctx.data);
+			},
+			onError: (ctx) => {
+				console.error('Facebook sign-in failed:', ctx.error.message);
+			},
+		});
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'Facebook sign-in failed',
+				data: null,
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'Facebook sign-in successful',
 			data: data,
 			error: null
 		};

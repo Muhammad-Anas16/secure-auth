@@ -14,7 +14,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/validation/authSchema";
 import SocialButton from "@/components/main/SocialButton";
-import { GitHubLogin, GoogleLogin, signUpUser } from "@/lib/auth-client";
+import { FacebookLogin, GitHubLogin, GoogleLogin, signUpUser } from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -77,6 +77,19 @@ const Register = () => {
     }
   };
 
+    const handleFacebookLogin = async () => {
+    setSocialLoading("facebook");
+    const result = await FacebookLogin();
+    if (result.success) {
+      toast.success("Logged in successfully!");
+      router.push("/");
+      setSocialLoading(null);
+    } else {
+      toast.error(result.message || "Login failed.");
+      setSocialLoading(null);
+    }
+  };
+
   const handleSocialLogin = (provider) => {
     setSocialLoading(provider);
 
@@ -111,7 +124,7 @@ const Register = () => {
             icon={<FaFacebook />}
             label="Facebook"
             loading={socialLoading === "facebook"}
-            onClick={() => handleSocialLogin("facebook")}
+            onClick={() => handleFacebookLogin()}
           />
           <SocialButton
             icon={<FaLinkedin />}
