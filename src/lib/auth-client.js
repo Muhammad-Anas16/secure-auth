@@ -135,7 +135,7 @@ export const GoogleLogin = async () => {
 				console.log('Google sign-in request started...');
 			},
 			onSuccess: (ctx) => {
-				console.log('Google sign-in successful!', ctx.data);
+				console.log('Google sign-in successful!');
 			},
 			onError: (ctx) => {
 				console.error('Google sign-in failed:', ctx.error.message);
@@ -178,7 +178,7 @@ export const GitHubLogin = async () => {
 				console.log('GitHub sign-in request started...');
 			},
 			onSuccess: (ctx) => {
-				console.log('GitHub sign-in successful!', ctx.data);
+				console.log('GitHub sign-in successful!');
 			},
 			onError: (ctx) => {
 				console.error('GitHub sign-in failed:', ctx.error.message);
@@ -220,7 +220,7 @@ export const FacebookLogin = async () => {
 				console.log('Facebook sign-in request started...');
 			},
 			onSuccess: (ctx) => {
-				console.log('Facebook sign-in successful!', ctx.data);
+				console.log('Facebook sign-in successful!');
 			},
 			onError: (ctx) => {
 				console.error('Facebook sign-in failed:', ctx.error.message);

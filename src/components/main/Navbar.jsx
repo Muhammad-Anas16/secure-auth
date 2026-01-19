@@ -1,15 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiShieldUserLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signOutUser } from "@/lib/auth-client";
+import { authClient, signOutUser } from "@/lib/auth-client";
 import { toast } from "sonner";
 
 const Navbar = () => {
-  const [formLoading, setFormLoading] = useState(false);
   const router = useRouter();
+  const [formLoading, setFormLoading] = useState(false);
+  const [session, setSession] = useState(false);
+  const [isItPending, setIsItPending] = useState(true);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data, isPending } = await authClient.getSession();
+      if (isPending) {
+        setIsItPending(true);
+      } else {
+        setIsItPending(false);
+      }
+
+      if (data) {
+        setSession(true);
+      } else {
+        setSession(false);
+      }
+    };
+    fetchSession();
+  }, [setSession, setIsItPending]);
 
   const handleSignOut = async () => {
     setFormLoading(true);
@@ -37,12 +57,21 @@ const Navbar = () => {
           Secure Auth
         </h2>
       </div>
-      <Link
-        href="/auth/login"
-        className="bg-[#009cc7]/20 text-[#009cc7] border border-[#009cc7]/30 px-4 py-1.5 rounded-full text-sm font-bold"
-      >
-        Sign In
-      </Link>
+      {isItPending ? null : session ? (
+        <button
+          onClick={handleSignOut}
+          className="bg-red-500/20 text-red-500 border border-red-500/30 px-4 py-1.5 rounded-full text-sm font-bold cursor-pointer"
+        >
+          {formLoading ? "Signing Out..." : "Sign Out"}
+        </button>
+      ) : (
+        <Link
+          href="/auth/login"
+          className="bg-[#009cc7]/20 text-[#009cc7] border border-[#009cc7]/30 px-4 py-1.5 rounded-full text-sm font-bold cursor-pointer"
+        >
+          Sign In
+        </Link>
+      )}
     </nav>
   );
 };
