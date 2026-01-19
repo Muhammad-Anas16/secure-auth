@@ -149,12 +149,12 @@ const Login = () => {
             loading={socialLoading === "facebook"}
             onClick={() => handleFacebookLogin()}
           />
-          <SocialButton
+          {/* <SocialButton
             icon={<FaLinkedin />}
             label="LinkedIn"
             loading={socialLoading === "linkedin"}
             onClick={() => handleSocialLogin("linkedin")}
-          />
+          /> */}
         </div>
 
         <div className="text-center text-slate-400 text-xs mb-6">

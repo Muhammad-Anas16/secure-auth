@@ -251,3 +251,79 @@ export const FacebookLogin = async () => {
 		};
 	}
 };
+
+export const requestPasswordReset = async (email) => {
+	try {
+		const { data, error } = await authClient.requestPasswordReset({
+			email: email,
+			redirectTo: "/reset-password"
+		});
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'Password reset request failed',
+				data: null,
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'Password reset email sent successfully',
+			data: data,
+			error: null
+		};
+	} catch (err) {
+		console.error('Password reset request failed:', err);
+		return {
+			success: false,
+			message: 'An unexpected error occurred',
+			data: null,
+			error: err
+		};
+	}
+};
+
+export const resetPassword = async (newPassword, token) => {
+	try {
+		const { data, error } = await authClient.resetPassword({
+			newPassword: newPassword,
+			token: token
+		}, {
+			onRequest: (ctx) => {
+				console.log('Password reset started...');
+			},
+			onSuccess: (ctx) => {
+				console.log('Password reset successful!', ctx.data);
+			},
+			onError: (ctx) => {
+				console.error('Password reset failed:', ctx.error.message);
+			},
+		});
+
+		if (error) {
+			return {
+				success: false,
+				message: error.message || 'Password reset failed',
+				data: null,
+				error: error
+			};
+		}
+
+		return {
+			success: true,
+			message: 'Password reset successful',
+			data: data,
+			error: null
+		};
+	} catch (err) {
+		console.error('Password reset failed:', err);
+		return {
+			success: false,
+			message: 'An unexpected error occurred',
+			data: null,
+			error: err
+		};
+	}
+};

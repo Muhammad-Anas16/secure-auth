@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from 'better-auth/adapters/mongodb';
 import { betterAuth } from 'better-auth';
+import { sendEmailFuncton } from "./sendEmailFuncton";
 
 const client = new MongoClient(process.env.DATABASE_URL);
 const db = client.db();
@@ -9,16 +10,18 @@ export const auth = betterAuth({
 	database: mongodbAdapter(db, { client }),
 	emailAndPassword: {
 		enabled: true,
+		sendResetPassword: async ({ user, url, token }, request) => {
+			void sendEmailFuncton({
+				to: user.email,
+				subject: "Reset your password",
+				htmlContent: `<p>Click the link to reset your password: <a href="${url}">${url}</a></p>`,
+			});
+		},
+		onPasswordReset: async ({ user }, request) => {
+			// your logic here
+			console.log(`Password for user ${user.email} has been reset.`);
+		},
 	},
-	// user: {
-	// 	additionalFields: {
-	// 		bio: {
-	// 			type: "string",
-	// 			required: false,
-	// 			defaultValue: "New user",
-	// 		},
-	// 	},
-	// },
 	socialProviders: {
 		google: {
 			clientId: process.env.GOOGLE_CLIENT_ID,

@@ -126,12 +126,12 @@ const Register = () => {
             loading={socialLoading === "facebook"}
             onClick={() => handleFacebookLogin()}
           />
-          <SocialButton
+          {/* <SocialButton
             icon={<FaLinkedin />}
             label="LinkedIn"
             loading={socialLoading === "linkedin"}
             onClick={() => handleSocialLogin("linkedin")}
-          />
+          /> */}
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
