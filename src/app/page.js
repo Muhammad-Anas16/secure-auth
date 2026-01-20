@@ -5,8 +5,6 @@ import HeroSection from "@/components/Home/HeroSection";
 import LogosSection from "@/components/Home/LogosSection";
 import TechChips from "@/components/Home/TechChips";
 import FeatureSection from "@/components/Home/FeatureSection";
-import HowItWorks from "@/components/Home/HowItWorks";
-import FinalCTA from "@/components/Home/FinalCTA";
 import Footer from "@/components/Home/Footer";
 
 
@@ -19,8 +17,6 @@ export default function Home() {
       <LogosSection />
       <TechChips />
       <FeatureSection />
-      <HowItWorks />
-      <FinalCTA />
       <Footer />
       </main>
     </>

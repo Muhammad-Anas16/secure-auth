@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { HiShieldCheck } from "react-icons/hi2";
@@ -14,35 +15,41 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center max-w-3xl w-full">
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 cursor-pointer hover:bg-white/10 transition">
           <span className="h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee]" />
           <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-slate-300">
-            VERSION 2.0 NOW LIVE
+            Secure & Reliable
           </span>
         </div>
 
         {/* Heading */}
         <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6">
-          Secure Auth for{" "}
-          <span className="text-cyan-400">Modern</span> Web Apps
+          Simplify Your <span className="text-cyan-400">WorkFlow</span> with
+          Secure Auth
         </h1>
 
         {/* Subtitle */}
         <p className="text-slate-400 text-base sm:text-lg max-w-xl mb-10 px-2">
-          Implement OAuth, JWT, and RBAC in minutes with our developer-first
-          platform.
+          Experience seamless and secure authentication solutions designed to
+          protect your digital world while enhancing user convenience.
         </p>
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mb-16 w-full sm:w-auto">
-          <button className="h-14 px-8 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-base sm:text-lg shadow-lg shadow-cyan-500/30 flex items-center justify-center gap-3 w-full sm:w-auto">
-            Start Free
+          <Link
+            href={"/register"}
+            className="h-14 px-8 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-base sm:text-lg shadow-lg shadow-cyan-500/30 flex items-center justify-center gap-3 w-full sm:w-auto"
+          >
+            Sign Up Now
             <FaArrowRight className="text-lg" />
-          </button>
+          </Link>
 
-          <button className="h-14 px-8 rounded-xl border border-white/15 bg-white/5 backdrop-blur-xl text-white font-bold text-base sm:text-lg w-full sm:w-auto">
-            Book Demo
-          </button>
+          <Link
+            href={"/login"}
+            className="h-14 px-8 py-3 rounded-xl border border-white/15 bg-white/5 backdrop-blur-xl text-white font-bold text-base sm:text-lg w-full sm:w-auto"
+          >
+            Log In
+          </Link>
         </div>
 
         {/* Card Preview */}

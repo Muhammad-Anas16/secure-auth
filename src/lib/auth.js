@@ -11,14 +11,13 @@ export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
 		sendResetPassword: async ({ user, url, token }, request) => {
-			void sendEmailFuncton({
+			await sendEmailFuncton({
 				to: user.email,
 				subject: "Reset your password",
 				htmlContent: `<p>Click the link to reset your password: <a href="${url}">${url}</a></p>`,
 			});
 		},
 		onPasswordReset: async ({ user }, request) => {
-			// your logic here
 			console.log(`Password for user ${user.email} has been reset.`);
 		},
 	},
@@ -26,7 +25,7 @@ export const auth = betterAuth({
 		google: {
 			clientId: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-		},
+		}, 
 		github: {
 			clientId: process.env.GITHUB_CLIENT_ID,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET,

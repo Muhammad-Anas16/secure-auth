@@ -6,8 +6,8 @@ import * as yup from "yup";
 import { MdArrowBackIos, MdAlternateEmail, MdSend } from "react-icons/md";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { requestPasswordReset } from "better-auth/api";
 import { useState } from "react";
+import { requestPasswordResetFunction } from "@/lib/auth-client";
 
 /* ------------------ Validation Schema ------------------ */
 const schema = yup.object({
@@ -42,11 +42,11 @@ const handleForgotPassword = async (data) => {
   console.log("Forgot Password Form Data:", email);
 
   try {
-    const result = await requestPasswordReset(email);
+    const result = await requestPasswordResetFunction(email);
 
     if (result?.success) {
       toast.success("Password reset email sent! Check your inbox.");
-      router.push("/auth/reset-password");
+      router.push("/reset-password");
     } else {
       toast.error(result?.message || "Failed to send password reset email.");
     }

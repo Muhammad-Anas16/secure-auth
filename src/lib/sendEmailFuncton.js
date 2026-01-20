@@ -1,26 +1,17 @@
-import { toast } from "sonner";
+import { sendEmail } from "@/lib/mailer";
 
 export const sendEmailFuncton = async ({ to, subject, htmlContent }) => {
     try {
-        const res = await fetch("/api/send-email", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ to, subject, htmlContent }),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw new Error(data.message || "Email failed");
+        if (!to || !subject || !htmlContent) {
+            throw new Error("Missing fields");
         }
-
-        toast.success("Email sent successfully ✅");
-        return { success: true, data };
+        const res = await sendEmail(to, subject, htmlContent);
+        if (!res) {
+            throw new Error("Email failed");
+        }
+        return { success: true };
     } catch (error) {
-        console.error(error);
-        toast.error("Failed to send email ❌");
-        return { success: false, error };
+        console.error("Email Helper Error:", error);
+        return { success: false, error: error.message };
     }
-};
+}

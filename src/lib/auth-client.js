@@ -252,7 +252,7 @@ export const FacebookLogin = async () => {
 	}
 };
 
-export const requestPasswordReset = async (email) => {
+export const requestPasswordResetFunction = async (email) => {
 	try {
 		const { data, error } = await authClient.requestPasswordReset({
 			email: email,
@@ -285,7 +285,7 @@ export const requestPasswordReset = async (email) => {
 	}
 };
 
-export const resetPassword = async (newPassword, token) => {
+export const resetPasswordFunction = async (newPassword, token) => {
 	try {
 		const { data, error } = await authClient.resetPassword({
 			newPassword: newPassword,

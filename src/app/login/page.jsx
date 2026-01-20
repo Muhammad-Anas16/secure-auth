@@ -213,7 +213,7 @@ const Login = () => {
           {/* Forgot Password */}
           <div className="text-right">
             <Link
-              href="/auth/forgot-password"
+              href="/forgot-password"
               className="text-cyan-400 hover:underline text-sm"
             >
               Forgot Password?
@@ -240,7 +240,7 @@ const Login = () => {
         {/* Footer */}
         <p className="text-center text-slate-400 text-sm mt-6">
           Don’t have an account?{" "}
-          <Link href="/auth/register" className="text-cyan-400 hover:underline">
+          <Link href="/register" className="text-cyan-400 hover:underline">
             Create one
           </Link>
         </p>

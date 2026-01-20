@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   MdLockReset,
   MdVpnKey,
@@ -13,8 +14,15 @@ import {
 } from "react-icons/md";
 
 export default function ResetPassword() {
+  const searchParams = useParams();
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+
+  useEffect(() => {
+    
+
+  }, [searchParams]);
 
   return (
     <div

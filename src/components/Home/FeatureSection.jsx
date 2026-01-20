@@ -1,33 +1,25 @@
 "use client";
 
 import React from "react";
-import {
-  FiShare2,
-  FiKey,
-  FiUsers,
-  FiLock,
-} from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
+import { AiOutlineThunderbolt } from "react-icons/ai";
+import { IoAnalyticsOutline } from "react-icons/io5";
 
 const features = [
   {
-    icon: FiShare2,
-    title: "OAuth 2.0",
-    desc: "Connect Google, GitHub, and Apple with one line of code.",
-  },
-  {
-    icon: FiKey,
-    title: "JWT Auth",
-    desc: "Secure stateless tokens with automatic rotation and blacklisting.",
+    icon: AiOutlineThunderbolt,
+    title: "Automated Tasks",
+    desc: "Let AI handle the repetitive work while you focus on what actually matters for your business.",
   },
   {
     icon: FiUsers,
-    title: "RBAC",
-    desc: "Granular permissions and organizational hierarchy out of the box.",
+    title: "Team Collaboration",
+    desc: "Share updates and work together in real-time across all your devices and platforms.",
   },
   {
-    icon: FiLock,
-    title: "MFA",
-    desc: "SMS, TOTP, and biometric authentication for ultimate security.",
+    icon: IoAnalyticsOutline,
+    title: "Detailed Analytics",
+    desc: "Get actionable insights into your performance with visual dashboards and daily reports.",
   },
 ];
 
@@ -40,7 +32,8 @@ const FeatureSection = () => {
         </h2>
 
         <p className="text-slate-400 max-w-xl mx-auto sm:mx-0 mb-10 sm:mb-12 text-sm sm:text-base text-center sm:text-left">
-          Everything you need to scale your identity infrastructure without the complexity.
+          Everything you need to scale your identity infrastructure without the
+          complexity.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">

@@ -38,7 +38,7 @@ const Navbar = () => {
 
       if (result.success) {
         toast.success(result.message || "Signed out successfully");
-        router.push("/auth/login");
+        router.push("/login");
       } else {
         toast.error(result.message || "Sign-out failed");
       }
@@ -57,7 +57,14 @@ const Navbar = () => {
           Secure Auth
         </h2>
       </div>
-      {isItPending ? null : session ? (
+      {isItPending ? (
+        <button
+          disabled
+          className="bg-white/20 text-white border border-white/30 px-4 py-1.5 rounded-full text-sm font-bold cursor-pointer"
+        >
+          Loading
+        </button>
+      ) : session ? (
         <button
           onClick={handleSignOut}
           className="bg-red-500/20 text-red-500 border border-red-500/30 px-4 py-1.5 rounded-full text-sm font-bold cursor-pointer"
@@ -66,7 +73,7 @@ const Navbar = () => {
         </button>
       ) : (
         <Link
-          href="/auth/login"
+          href="/login"
           className="bg-[#009cc7]/20 text-[#009cc7] border border-[#009cc7]/30 px-4 py-1.5 rounded-full text-sm font-bold cursor-pointer"
         >
           Sign In
