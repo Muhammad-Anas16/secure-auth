@@ -41,7 +41,7 @@ const Register = () => {
 
     if (result.success) {
       toast.success(result.message || "Account created successfully!");
-      router.push("/auth/login");
+      router.push("/login");
       setFormLoading(false);
     } else {
       toast.success(result.message || "Account creation failed.");

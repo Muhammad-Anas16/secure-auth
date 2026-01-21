@@ -46,7 +46,6 @@ const handleForgotPassword = async (data) => {
 
     if (result?.success) {
       toast.success("Password reset email sent! Check your inbox.");
-      router.push("/reset-password");
     } else {
       toast.error(result?.message || "Failed to send password reset email.");
     }

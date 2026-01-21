@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import ResetPassword from "@/components/forgot-password";
+import ResetPassword from "@/components/reset-password";
 
 const page = () => {
   return (
