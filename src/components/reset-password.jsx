@@ -61,7 +61,7 @@ const ResetPassword = () => {
     } else {
       setMessage("Invalid reset link. Please request a new password reset.");
     }
-  }, [searchParams]);
+  }, []);
 
   const onSubmit = async (data) => {
     if (!token) return;
@@ -69,17 +69,7 @@ const ResetPassword = () => {
     try {
       setLoading(true);
 
-      const { password, token } = data;
-      const tokenFromData = token || searchParams.get("token");
-
-      if (token) {
-        setMessage(
-          "Invalid or expired token. Please request a new password reset.",
-        );
-        return;
-      }
-
-      const result = await resetPasswordFunction(password, tokenFromData);
+      const result = await resetPasswordFunction(data.password, token);
       if (!result.success) {
         setMessage(result.message || "Failed to reset password.");
         toast.error(result.message || "Failed to reset password.");
