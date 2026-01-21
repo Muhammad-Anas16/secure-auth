@@ -18,9 +18,7 @@ import Link from "next/link";
 import { resetPasswordFunction } from "@/lib/auth-client";
 import { toast } from "sonner";
 
-/* =======================
-   Validation Schema
-======================= */
+
 const schema = yup.object().shape({
   password: yup
     .string()
