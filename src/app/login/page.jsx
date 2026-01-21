@@ -130,7 +130,7 @@ const Login = () => {
         </h1>
 
         {/* Social Login */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 w-full">
           <SocialButton
             icon={<FaGoogle />}
             label="Google"
@@ -143,12 +143,12 @@ const Login = () => {
             loading={socialLoading === "github"}
             onClick={() => handleGitHubLogin()}
           />
-          <SocialButton
+          {/* <SocialButton
             icon={<FaFacebook />}
             label="Facebook"
             loading={socialLoading === "facebook"}
             onClick={() => handleFacebookLogin()}
-          />
+          /> */}
           {/* <SocialButton
             icon={<FaLinkedin />}
             label="LinkedIn"

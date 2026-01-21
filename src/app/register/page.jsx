@@ -14,7 +14,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signupSchema } from "@/validation/authSchema";
 import SocialButton from "@/components/main/SocialButton";
-import { FacebookLogin, GitHubLogin, GoogleLogin, signUpUser } from "@/lib/auth-client";
+import {
+  FacebookLogin,
+  GitHubLogin,
+  GoogleLogin,
+  signUpUser,
+} from "@/lib/auth-client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -77,7 +82,7 @@ const Register = () => {
     }
   };
 
-    const handleFacebookLogin = async () => {
+  const handleFacebookLogin = async () => {
     setSocialLoading("facebook");
     const result = await FacebookLogin();
     if (result.success) {
@@ -107,7 +112,7 @@ const Register = () => {
         </h1>
 
         {/* Social */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 w-full">
           <SocialButton
             icon={<FaGoogle />}
             label="Google"
@@ -120,12 +125,12 @@ const Register = () => {
             loading={socialLoading === "github"}
             onClick={() => handleGitHubLogin()}
           />
-          <SocialButton
+          {/* <SocialButton
             icon={<FaFacebook />}
             label="Facebook"
             loading={socialLoading === "facebook"}
             onClick={() => handleFacebookLogin()}
-          />
+          /> */}
           {/* <SocialButton
             icon={<FaLinkedin />}
             label="LinkedIn"
