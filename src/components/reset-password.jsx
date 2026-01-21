@@ -15,6 +15,8 @@ import {
   MdChevronLeft,
 } from "react-icons/md";
 import Link from "next/link";
+import { resetPasswordFunction } from "@/lib/auth-client";
+import { toast } from "sonner";
 
 /* =======================
    Validation Schema
@@ -67,9 +69,10 @@ const ResetPassword = () => {
     try {
       setLoading(true);
 
-      const { password, token: tokenFromData } = data;
+      const { password, token } = data;
+      const tokenFromData = token || searchParams.get("token");
 
-      if (token !== tokenFromData) {
+      if (token) {
         setMessage(
           "Invalid or expired token. Please request a new password reset.",
         );
@@ -79,15 +82,21 @@ const ResetPassword = () => {
       const result = await resetPasswordFunction(password, tokenFromData);
       if (!result.success) {
         setMessage(result.message || "Failed to reset password.");
+        toast.error(result.message || "Failed to reset password.");
         setTimeout(() => {
           router.push("/login");
         }, 1500);
       } else {
         setMessage("Password updated successfully!");
+        toast.success("Password updated successfully!");
+        setTimeout(() => {
+          router.push("/login");
+        }, 1000);
       }
 
     } catch (error) {
       setMessage("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
