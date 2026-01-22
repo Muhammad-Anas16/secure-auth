@@ -21,7 +21,7 @@ Click the image below to watch the full demo of the authentication system:
 
 <a href="https://drive.google.com/file/d/1AbevqV2gArBNrzBZ-xlpjxmA5_I-JMyQ/view?usp=sharing" target="_blank">
   <img 
-    src="assets/demo-thumbnail.png" 
+    src="[assets/demo-thumbnail.png](https://drive.google.com/file/d/1m0-z5N6_SVr-V-JD3w0EfGjeUPS8pBTa/view?usp=sharing)" 
     alt="Authentication System Demo Video" 
     width="700"
   >
