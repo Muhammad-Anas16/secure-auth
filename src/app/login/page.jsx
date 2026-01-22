@@ -63,7 +63,7 @@ const Login = () => {
     const result = await GoogleLogin();
     if (result.success) {
       toast.success("Logged in successfully!");
-      router.push("/");
+      router.push("/dashboard");
       setSocialLoading(null);
     } else {
       toast.error(result.message || "Login failed.");
@@ -76,7 +76,7 @@ const Login = () => {
     const result = await GitHubLogin();
     if (result.success) {
       toast.success("Logged in successfully!");
-      router.push("/");
+      router.push("/dashboard");
       setSocialLoading(null);
     } else {
       toast.error(result.message || "Login failed.");
@@ -89,7 +89,7 @@ const Login = () => {
       const result = await FacebookLogin();
       if (result.success) {
         toast.success("Logged in successfully!");
-        router.push("/");
+        router.push("/dashboard");
         setSocialLoading(null);
       } else {
         toast.error(result.message || "Login failed.");

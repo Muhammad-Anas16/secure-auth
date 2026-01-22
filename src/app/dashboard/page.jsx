@@ -1,23 +1,31 @@
 "use client";
 
-import { signOutUser } from "@/lib/auth-client";
+import { authClient, signOutUser } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import {
-  FiMenu,
-  FiShield,
-  FiMail,
-  FiUserCheck,
-  FiLogOut,
-  FiKey,
-} from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiShield, FiMail, FiUserCheck, FiLogOut } from "react-icons/fi";
 import { HiCheckBadge } from "react-icons/hi2";
-import { RiShieldKeyholeLine, RiDeviceLine } from "react-icons/ri";
+import { RiDeviceLine } from "react-icons/ri";
 import { toast } from "sonner";
 
 export default function DashboardPage() {
   const router = useRouter();
   const [formLoading, setFormLoading] = useState(false);
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const { data } = await authClient.getSession();
+      if (data) {
+        setSession(data);
+      } else {
+        setSession(null);
+      }
+    };
+    fetchSession();
+  }, [setSession]);
+
+  console.log("Session data", session?.session?.createdAt);
 
   const handleSignOut = async () => {
     setFormLoading(true);
@@ -26,7 +34,9 @@ export default function DashboardPage() {
 
       if (result.success) {
         toast.success(result.message || "Signed out successfully");
-        router.push("/auth/login");
+        setTimeout(() => {
+          router.push("/login");
+        }, 1000);
       } else {
         toast.error(result.message || "Sign-out failed");
       }
@@ -54,14 +64,26 @@ export default function DashboardPage() {
         <div className="relative">
           <div className="absolute inset-0 rounded-full bg-emerald-500/30 blur-xl" />
           <div className="relative size-32 rounded-full bg-[#a7c7c3] flex items-center justify-center shadow-2xl">
-            <FiUserCheck className="text-6xl text-white" />
+            {session?.user?.image ? (
+              <img
+                src={session.user.image}
+                alt="User Avatar"
+                className="absolute inset-0 w-full h-full object-cover rounded-full border-2"
+                loading="lazy"
+                referrerPolicy="no-referrer"
+              />
+            ) : (
+              <FiUserCheck className="text-6xl text-white" />
+            )}
           </div>
-          <div className="absolute bottom-1 right-1 size-9 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-[#0b0f14]">
+          <div className="absolute bottom-1 right-1 size-9 rounded-full bg-emerald-500 flex items-center justify-center border-4 border-[#0b0f14] cursor-pointer">
             <HiCheckBadge className="text-lg text-white" />
           </div>
         </div>
 
-        <h2 className="mt-8 text-2xl font-bold">Welcome back, Alex Rivera</h2>
+        <h2 className="mt-8 text-2xl font-bold capitalize">
+          Welcome back, {session ? session?.user?.name : "User"}
+        </h2>
 
         <p className="mt-2 flex items-center gap-2 text-sm text-gray-400">
           <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -84,7 +106,9 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-400">Primary Email</p>
-                <p className="font-semibold">alex.rivera@example.com</p>
+                <p className="font-semibold">
+                  {session ? session?.user?.email : "user.email@example.com"}
+                </p>
               </div>
             </div>
             <FiUserCheck className="text-emerald-500 text-xl" />
@@ -98,7 +122,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-400">Auth Provider</p>
-                <p className="font-semibold">GitHub OAuth 2.0</p>
+                <p className="font-semibold">OAuth 2.0</p>
               </div>
             </div>
             <span className="text-xs font-bold text-emerald-400 bg-emerald-500/15 px-3 py-1 rounded-full">
@@ -114,13 +138,8 @@ export default function DashboardPage() {
           PRIVACY & ACCESS
         </h3>
 
-        <div className="grid grid-cols-2 gap-4">
-          <button className="rounded-2xl bg-[#121820] p-5 text-left shadow-lg">
-            <RiShieldKeyholeLine className="text-emerald-400 text-2xl mb-3" />
-            <p className="font-semibold">Manage 2FA</p>
-          </button>
-
-          <button className="rounded-2xl bg-[#121820] p-5 text-left shadow-lg">
+        <div className="grid grid-cols-1 gap-4">
+          <button className="rounded-2xl bg-[#121820] p-5 text-left shadow-lg cursor-pointer ">
             <RiDeviceLine className="text-emerald-400 text-2xl mb-3" />
             <p className="font-semibold">Active Devices</p>
           </button>
@@ -133,9 +152,6 @@ export default function DashboardPage() {
           <h3 className="text-xs tracking-widest text-gray-500">
             RECENT ACTIVITY
           </h3>
-          <span className="text-sm text-emerald-400 font-semibold">
-            View All
-          </span>
         </div>
 
         <div className="rounded-2xl bg-[#121820] shadow-lg divide-y divide-white/5">
@@ -144,38 +160,39 @@ export default function DashboardPage() {
             <div>
               <p className="font-semibold">Successful Login</p>
               <p className="text-sm text-gray-500">
-                Today, 9:42 AM • San Francisco, CA
-              </p>
-            </div>
-          </div>
+                {/* Today, 9:42 AM • San Francisco, CA */}
+                {(() => {
+                  const d = new Date(session?.session?.createdAt);
+                  const now = new Date();
 
-          <div className="flex gap-4 px-5 py-4">
-            <FiKey className="text-gray-400 text-xl" />
-            <div>
-              <p className="font-semibold">API Key Generated</p>
-              <p className="text-sm text-gray-500">Yesterday, 4:15 PM</p>
+                  const isToday =
+                    d.getDate() === now.getDate() &&
+                    d.getMonth() === now.getMonth() &&
+                    d.getFullYear() === now.getFullYear();
+
+                  const yesterday = new Date(now);
+                  yesterday.setDate(now.getDate() - 1);
+
+                  const isYesterday =
+                    d.getDate() === yesterday.getDate() &&
+                    d.getMonth() === yesterday.getMonth() &&
+                    d.getFullYear() === yesterday.getFullYear();
+
+                  const time = d.toLocaleTimeString("en-US", {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  });
+
+                  if (isToday) return `Today, ${time}`;
+                  if (isYesterday) return `Yesterday, ${time}`;
+                  return time;
+                })()}
+              </p>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ================= Footer ================= */}
-      <footer className="mt-16 text-center text-xs text-gray-500 space-y-4">
-        <p>
-          Database: MongoDB Atlas (us-east-1)
-          <br />
-          Authenticated via Auth.js 5.0
-        </p>
-
-        <div className="flex justify-center gap-6">
-          <a className="hover:text-white" href="#">
-            Privacy Policy
-          </a>
-          <a className="hover:text-white" href="#">
-            Terms of Service
-          </a>
-        </div>
-      </footer>
     </main>
   );
 }

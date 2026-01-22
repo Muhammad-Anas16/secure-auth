@@ -58,7 +58,7 @@ export const signInUser = async (email, password) => {
 		const { data, error } = await authClient.signIn.email({
 			email,
 			password,
-			callbackURL: "/",
+			callbackURL: "/dashboard",
 			rememberMe: true
 		}, {
 			onRequest: (ctx) => {
@@ -129,7 +129,7 @@ export const GoogleLogin = async () => {
 	try {
 		const { data, error } = await authClient.signIn.social({
 			provider: "google",
-			callbackURL: "/"
+			callbackURL: "/dashboard"
 		}, {
 			onRequest: (ctx) => {
 				console.log('Google sign-in request started...');
@@ -172,7 +172,7 @@ export const GitHubLogin = async () => {
 	try {
 		const { data, error } = await authClient.signIn.social({
 			provider: "github",
-			callbackURL: "/"
+			callbackURL: "/dashboard"
 		}, {
 			onRequest: (ctx) => {
 				console.log('GitHub sign-in request started...');
@@ -214,7 +214,7 @@ export const FacebookLogin = async () => {
 	try {
 		const { data, error } = await authClient.signIn.social({
 			provider: "facebook",
-			callbackURL: "/"
+			callbackURL: "/dashboard"
 		}, {
 			onRequest: (ctx) => {
 				console.log('Facebook sign-in request started...');
