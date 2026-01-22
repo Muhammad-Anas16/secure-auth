@@ -19,10 +19,9 @@ A secure, production-ready authentication system built with modern web technolog
 
 Click the image below to watch the full demo of the authentication system:
 
-<a href="https://drive.google.com/file/d/1AbevqV2gArBNrzBZ-xlpjxmA5_I-JMyQ/view?usp=sharing" target="_blank">
+<a href="https://www.canva.com/design/DAG_GuVCFA4/YmYInhJsygxsRDLBxkP3hQ/watch?utm_content=DAG_GuVCFA4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4d6b61899e" target="_blank">
   <img 
-    src="[assets/demo-thumbnail.png](https://drive.google.com/file/d/1m0-z5N6_SVr-V-JD3w0EfGjeUPS8pBTa/view?usp=sharing)" 
-    alt="Authentication System Demo Video" 
+    src="https://drive.google.com/file/d/1m0-z5N6_SVr-V-JD3w0EfGjeUPS8pBTa/view?usp=sharing" alt="Authentication System Demo Video" 
     width="700"
   >
 </a>
