@@ -21,9 +21,7 @@ Click the image below to watch the full demo of the authentication system:
 
 <a href="https://www.canva.com/design/DAG_GuVCFA4/YmYInhJsygxsRDLBxkP3hQ/watch?utm_content=DAG_GuVCFA4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4d6b61899e" target="_blank">
   <img 
-    src="https://drive.google.com/file/d/1m0-z5N6_SVr-V-JD3w0EfGjeUPS8pBTa/view?usp=sharing" alt="Authentication System Demo Video" 
-    width="700"
-  >
+    src="https://www.canva.com/design/DAG_HU-mjTM/AycN6dfsgN24SebW0RXt1A/view?utm_content=DAG_HU-mjTM&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hdd707d6cfb" alt="Authentication System Demo Video" width="700">
 </a>
 
 > **Note:** The demo is recorded without voice narration.  
