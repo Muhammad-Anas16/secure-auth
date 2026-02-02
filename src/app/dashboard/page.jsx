@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient, signOutUser } from "@/lib/auth-client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FiShield, FiMail, FiUserCheck, FiLogOut } from "react-icons/fi";
@@ -133,18 +134,21 @@ export default function DashboardPage() {
       </section>
 
       {/* ================= Privacy ================= */}
-      <section className="mt-12">
+      {/* <section className="mt-12">
         <h3 className="text-xs tracking-widest text-gray-500 mb-4">
           PRIVACY & ACCESS
         </h3>
 
         <div className="grid grid-cols-1 gap-4">
-          <button className="rounded-2xl bg-[#121820] p-5 text-left shadow-lg cursor-pointer ">
+          <Link
+            href={"/sessions"}
+            className="rounded-2xl bg-[#121820] p-5 text-left shadow-lg cursor-pointer "
+          >
             <RiDeviceLine className="text-emerald-400 text-2xl mb-3" />
             <p className="font-semibold">Active Devices</p>
-          </button>
+          </Link>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= Activity ================= */}
       <section className="mt-12">
